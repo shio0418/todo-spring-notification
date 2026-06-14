@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO</title>
+</head>
+<body>
+
+    <h1>TODOリスト</h1>
+
+    <!-- 作成フォーム -->
+    <form th:action="@{/todos}" method="post">
+        <input type="text" name="title" placeholder="タイトル">
+        <input type="date" name="deadline">
+        <button type="submit">追加</button>
+    </form>
+
+    <!-- 一覧 -->
+    <ul>
+        <li th:each="todo : ${todos}">
+            <span th:text="${todo.title}"></span>
+            <span th:text="${todo.deadline}"></span>
+
+            <!-- 完了トグル -->
+            <form th:action="@{/todos/{id}/complete(id=${todo.id})}" method="post">
+                <button type="submit">完了</button>
+            </form>
+
+            <!-- 削除 -->
+            <form th:action="@{/todos/{id}/delete(id=${todo.id})}" method="post">
+                <button type="submit">削除</button>
+            </form>
+        </li>
+    </ul>
+
+</body>
+</html>
