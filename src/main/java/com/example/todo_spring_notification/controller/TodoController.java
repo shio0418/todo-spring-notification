@@ -26,6 +26,9 @@ public class TodoController {
 
     @PostMapping("/todos")
     public String create(@RequestParam String title, @RequestParam LocalDate deadline) {
+        if (title == null || title.isBlank()) {
+            return "redirect:/todos";
+        }
         todoService.save(title, deadline);
         return "redirect:/todos";
     }
