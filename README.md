@@ -1,0 +1,1 @@
+Spring+通知管理を勉強するための簡単なtodo app
